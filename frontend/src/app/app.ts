@@ -1,15 +1,23 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { Dashboard } from './dashboard/dashboard';
 
 @Component({
   standalone: true,
   selector: 'app-root',
   imports: [
-    RouterOutlet,
     Dashboard,
   ],
-  templateUrl: './app.html',
+  template: `
+    <div class="app-container">
+      <header>
+        <img src="logo.jpg" alt="ttc Logo" class="logo" />
+        <h1>CargoLog</h1>
+      </header>
+      <main>
+        <app-dashboard></app-dashboard>
+      </main>
+    </div>
+  `,
   styleUrls: ['./app.css'],
 })
 export class App {
