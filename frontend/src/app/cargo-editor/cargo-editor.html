@@ -10,7 +10,12 @@
       required
       min="1"
       max="999"
+      (keydown)="amountEvent($event)"
+      #menge="ngModel"
     />
+    <div class="error-message" *ngIf="menge.invalid && menge.touched">
+        Die zulässige Menge beträgt zwischen 0 und 1000.
+    </div>  
   </label>
 
   <!-- Gewicht -->

@@ -67,3 +67,8 @@ select:has(option:checked[value=""]):not(:focus):not(:focus-within) {
   background-color: #94a3b8;
   cursor: not-allowed;
 }
+
+.error-message {
+  color: #dc2626; /* Rot für Fehler */
+  font-size: 0.85rem;
+}
