@@ -5,15 +5,15 @@
     Menge
     <input
       type="number"
-      name="menge"
+      name="amount"
       ngModel
       required
       min="1"
       max="999"
       (keydown)="amountEvent($event)"
-      #menge="ngModel"
+      #amount="ngModel"
     />
-    <div class="error-message" *ngIf="menge.invalid && (menge.dirty || menge.touched)">
+    <div class="error-message" *ngIf="amount.invalid && (amount.dirty || amount.touched)">
         Die zulässige Menge beträgt zwischen 0 und 1000.
     </div>
   </label>
@@ -23,12 +23,17 @@
     Gewicht (kg)
     <input
       type="number"
-      name="gewicht"
+      name="weight"
       ngModel
       required
       min="0"
       step="0.01"
+      (keydown)="weightEvent($event)"
+      #weight="ngModel"
     />
+    <div class="error-message" *ngIf="weight.invalid && (weight.dirty || weight.touched)">
+        Das Gewicht muss ein positiver Wert sein.
+    </div>
   </label>
 
   <!-- Bezeichnung -->
@@ -36,10 +41,14 @@
     Bezeichnung
     <input
       type="text"
-      name="bezeichnung"
+      name="description"
       ngModel
       required
-    />
+      maxlength="50"
+      #description="ngModel"/>
+    <div class="error-message" *ngIf="description.invalid && (description.dirty || description.touched)">
+        Bitte geben Sie eine Bezeichnung ein.
+    </div>
   </label>
 
   <!-- Auftragseingang -->

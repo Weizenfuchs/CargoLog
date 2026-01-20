@@ -15,4 +15,9 @@ export class CargoEditor {
       event.preventDefault();
     }
   }
+  weightEvent(event: KeyboardEvent): void {
+    if (event.key === '-' || event.key === '+') {
+      event.preventDefault();
+    }
+  }
 }
