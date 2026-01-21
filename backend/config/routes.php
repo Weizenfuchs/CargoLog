@@ -17,6 +17,7 @@ return static function (Application $app, MiddlewareFactory $factory, ContainerI
     $app->post(
         '/api/cargo', 
         [
+            // FUCHS:TODO CargoDataValidationMiddleware::class,
             CargoCreateMiddleware::class,
             CargoHandler::class,
         ], 
