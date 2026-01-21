@@ -1,4 +1,4 @@
-<form #cargoForm="ngForm" class="cargo-form">
+<form #cargoForm="ngForm" (ngSubmit)="onSubmit(cargoForm.value)" class="cargo-form">
 
   <!-- Menge -->
   <label>
@@ -83,21 +83,3 @@
   </button>
 
 </form>
-
-<!-- Test:Start -->
-<br>
-<form #testForm="ngForm" (ngSubmit)="onSubmit(testForm.value)">
-  <label>
-    Test
-    <input
-      type="text"
-      name="test"
-      ngModel
-      required
-    />
-  </label>
-  <button type="submit">
-    Speichern
-  </button>
-</form>
-<!-- Test:End -->
