@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Handler;
+namespace App\Cargo\Handler;
 
 use Laminas\Diactoros\Response\JsonResponse;
 use Psr\Http\Message\ResponseInterface;
@@ -13,8 +13,8 @@ class CargoHandler implements RequestHandlerInterface
 {
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $data = json_decode($request->getBody()->getContents(), true);
-        
+        $data = $request->getAttribute('validatedData');
+
         if (!$data) {
             return new JsonResponse([
                 'success' => false,
