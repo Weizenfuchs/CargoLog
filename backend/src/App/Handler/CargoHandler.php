@@ -15,6 +15,13 @@ class CargoHandler implements RequestHandlerInterface
     {
         $data = json_decode($request->getBody()->getContents(), true);
         
+        if (!$data) {
+            return new JsonResponse([
+                'success' => false,
+                'message' => 'Keine Daten empfangen'
+            ], 400);
+        }
+        
         return new JsonResponse([
             'success' => true,
             'message' => 'Daten erfolgreich empfangen',

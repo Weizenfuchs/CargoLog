@@ -83,3 +83,21 @@
   </button>
 
 </form>
+
+<!-- Test:Start -->
+<br>
+<form #testForm="ngForm" (ngSubmit)="onSubmit(testForm.value)">
+  <label>
+    Test
+    <input
+      type="text"
+      name="test"
+      ngModel
+      required
+    />
+  </label>
+  <button type="submit">
+    Speichern
+  </button>
+</form>
+<!-- Test:End -->

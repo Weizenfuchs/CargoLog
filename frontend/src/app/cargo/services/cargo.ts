@@ -1,16 +1,20 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs'
 
 @Injectable({
   providedIn: 'root',
 })
 export class CargoService {
-  private apiUrl = 'http://localhost:8080/api/cargo'; // Passe den Port an
+  private apiUrl = 'http://localhost:8080/api/cargo';
 
   constructor(private http: HttpClient) { }
 
   submitCargoData(data: any): Observable<any> {
-    return this.http.post(this.apiUrl, data);
+    return this.http.post(this.apiUrl, data, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    });
   }
 }

@@ -1,5 +1,0 @@
-{
-    "require": {
-        "mezzio/mezzio-cors": "^1.15"
-    }
-}

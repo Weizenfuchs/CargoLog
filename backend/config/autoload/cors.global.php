@@ -1,14 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
+use Mezzio\Cors\Configuration\ConfigurationInterface;
+
 return [
-    'cors' => [
+    ConfigurationInterface::CONFIGURATION_IDENTIFIER => [
         'allowed_origins' => [
-            'http://localhost:4200', // Angular dev server
+            ConfigurationInterface::ANY_ORIGIN,
         ],
-        'allowed_headers' => ['Content-Type', 'Authorization'],
-        'allowed_methods' => ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+        'allowed_headers' => ['Content-Type', 'Authorization', 'Accept'],
+        'allowed_max_age' => '600',
+        'credentials_allowed' => false,
         'exposed_headers' => [],
-        'max_age' => 600,
-        'credentials_allowed' => true,
     ],
 ];
