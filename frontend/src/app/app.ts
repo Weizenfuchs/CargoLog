@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { Dashboard } from './dashboard/dashboard';
-import { CargoEditor } from './cargo-editor/cargo-editor';
+import { CargoEditor } from './cargo/cargo-editor/cargo-editor';
 
 @Component({
   standalone: true,
@@ -15,9 +15,11 @@ import { CargoEditor } from './cargo-editor/cargo-editor';
         <img src="logo.jpg" alt="ttc Logo" class="logo" />
         <h1>CargoLog</h1>
       </header>
-      <main>
-        <app-dashboard></app-dashboard>
-      </main>
+      <body>
+        <main>
+          <app-dashboard></app-dashboard>
+        </main>
+      </body>
     </div>
   `,
   styleUrls: ['./app.css'],

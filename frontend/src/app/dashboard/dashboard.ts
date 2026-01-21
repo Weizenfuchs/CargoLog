@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CargoEditor } from '../cargo-editor/cargo-editor';
+import { CargoEditor } from '../cargo/cargo-editor/cargo-editor';
 
 @Component({
   standalone: true,
