@@ -7,7 +7,7 @@ use Mezzio\Cors\Configuration\ConfigurationInterface;
 return [
     ConfigurationInterface::CONFIGURATION_IDENTIFIER => [
         'allowed_origins' => [
-            ConfigurationInterface::ANY_ORIGIN,
+            'http://localhost:4200', // Angular Dev Server
         ],
         'allowed_headers' => ['Content-Type', 'Authorization', 'Accept'],
         'allowed_max_age' => '600',
