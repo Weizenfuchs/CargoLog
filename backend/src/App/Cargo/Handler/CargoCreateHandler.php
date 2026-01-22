@@ -4,27 +4,36 @@ declare(strict_types=1);
 
 namespace App\Cargo\Handler;
 
+use App\Cargo\Controller\CargoController;
 use Laminas\Diactoros\Response\JsonResponse;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class CargoHandler implements RequestHandlerInterface
+class CargoCreateHandler implements RequestHandlerInterface
 {
+    public function __construct(
+        private readonly CargoController $cargoController
+    ) {}
+
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $data = $request->getAttribute('validatedData');
+        $data = json_decode($request->getBody()->getContents(), true);
 
-        if (!$data) {
+        // FUCHS:TODO: Testen und aktivieren
+        // $success = $this->cargoController->create($data);
+        $success = true;
+
+        if (!$success) {
             return new JsonResponse([
                 'success' => false,
-                'message' => 'Keine Daten empfangen'
+                'message' => 'Fehler beim Erstellen der Frachtdaten'
             ], 400);
         }
         
         return new JsonResponse([
             'success' => true,
-            'message' => 'Daten erfolgreich empfangen',
+            'message' => 'Frachtdaten erfolgreich erstellt',
             'received_data' => $data
         ], 200);
     }

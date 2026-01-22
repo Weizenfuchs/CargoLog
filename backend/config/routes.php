@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use App\Cargo\Middleware\CargoCreateMiddleware;
-use App\Cargo\Handler\CargoHandler;
+use App\Cargo\Handler\CargoCreateHandler;
+use App\Cargo\Middleware\CargoValidationMiddleware;
 use Mezzio\Application;
 use Mezzio\MiddlewareFactory;
 use Psr\Container\ContainerInterface;
@@ -17,9 +17,8 @@ return static function (Application $app, MiddlewareFactory $factory, ContainerI
     $app->post(
         '/api/cargo', 
         [
-            // FUCHS:TODO CargoDataValidationMiddleware::class,
-            CargoCreateMiddleware::class,
-            CargoHandler::class,
+            CargoValidationMiddleware::class,
+            CargoCreateHandler::class,
         ], 
         'cargo.create'
     );

@@ -6,78 +6,59 @@ namespace App\Cargo\Model\Repository;
 
 use PDO;
 use App\Cargo\Model\Cargo;
+use App\Cargo\Service\Extractor\CargoExtractor;
+use App\Cargo\Service\Hydrator\CargoHydrator;
 
 class CargoRepository
 {
-    private $pdo;
-
-    public function __construct(PDO $pdo)
-    {
-        $this->pdo = $pdo;
-    }
+    public function __construct(
+        private readonly PDO $pdo,
+        private readonly CargoHydrator $cargoHydrator,
+        private readonly CargoExtractor $cargoExtractor
+        ) {}
 
     public function create(Cargo $cargo): bool
     {
+        $cargoData = $this->cargoExtractor->extract($cargo);
+
         $sql = 'INSERT INTO cargo (amount, description, weight, order_date, transport_type) 
                 VALUES (:amount, :description, :weight, :order_date, :transport_type)';
 
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindParam(':amount', $cargo->getAmount());
-        $stmt->bindParam(':description', $cargo->getDescription());
-        $stmt->bindParam(':weight', $cargo->getWeight());
-        $stmt->bindParam(':order_date', $cargo->getOrderDate());
-        $stmt->bindParam(':transport_type', $cargo->getTransportType());
 
-        return $stmt->execute();
+        /** Test if it works without param binding. The execute Function should do the job just fine */
+        /*
+        $stmt->bindParam(':amount', $cargoData['amount']);
+        $stmt->bindParam(':description', $cargoData['description']);
+        $stmt->bindParam(':weight', $cargoData['weight']);
+        $stmt->bindParam(':order_date', $cargoData['order_date']);
+        $stmt->bindParam(':transport_type', $cargoData['transport_type']);
+        */
+
+        return $stmt->execute($cargoData);
     }
 
     public function findById(int $id): ?Cargo
     {
-        $sql = 'SELECT * FROM cargo WHERE id = :id';
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->bindParam(':id', $id);
-        $stmt->execute();
-
-        $data = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $data ? new Cargo($data['id'], $data['amount'], $data['description'], $data['weight'], $data['order_date'], $data['transport_type']) : null;
+        // FUCHS:TODO: Implement
+        return null;
     }
 
     public function findAll(): array
     {
-        $sql = 'SELECT * FROM cargo';
-        $stmt = $this->pdo->query($sql);
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        $cargoList = [];
-        foreach ($result as $data) {
-            $cargoList[] = new Cargo($data['id'], $data['amount'], $data['description'], $data['weight'], $data['order_date'], $data['transport_type']);
-        }
-
-        return $cargoList;
+        // FUCHS:TODO: Implement
+        return [];
     }
 
     public function update(Cargo $cargo): bool
     {
-        $sql = 'UPDATE cargo SET amount = :amount, description = :description, weight = :weight, order_date = :order_date, transport_type = :transport_type 
-                WHERE id = :id';
-
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->bindParam(':amount', $cargo->amount);
-        $stmt->bindParam(':description', $cargo->getDescription());
-        $stmt->bindParam(':weight', $cargo->getWeight());
-        $stmt->bindParam(':order_date', $cargo->getOrderDate());
-        $stmt->bindParam(':transport_type', $cargo->getTransportType());
-        $stmt->bindParam(':id', $cargo->getId());
-
-        return $stmt->execute();
+        // FUCHS:TODO: Implement
+        return false;
     }
 
     public function delete(int $id): bool
     {
-        $sql = 'DELETE FROM cargo WHERE id = :id';
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->bindParam(':id', $id);
-        
-        return $stmt->execute();
+        // FUCHS:TODO: Implement
+        return false;
     }
 }
