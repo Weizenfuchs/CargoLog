@@ -2,8 +2,12 @@
 
 declare(strict_types=1);
 
-use App\Handler\CargoHandler;
-use App\Handler\CargoHandlerFactory;
+use App\Cargo\Controller\CargoController;
+use App\Cargo\Handler\CargoCreateHandler;
+use App\Cargo\Middleware\CargoControllerFactory;
+use App\Cargo\Middleware\CargoRepositoryFactory;
+use App\Cargo\Model\Repository\CargoRepository;
+use App\Cargo\Service\Hydrator\CargoHydrator;
 
 return [
     // Provides application-wide services.
@@ -23,7 +27,10 @@ return [
         ],
         // Use 'factories' for services provided by callbacks/factory classes.
         'factories' => [
-            CargoHandler::class => CargoHandlerFactory::class,
+            CargoCreateHandler::class => CargoCreateHandler::class,
+            CargoController::class => CargoControllerFactory::class,
+            CargoHydrator::class => CargoHydratorFactory::class,
+            CargoRepository::class => CargoRepositoryFactory::class,
         ],
     ],
 ];
