@@ -1,6 +1,39 @@
 # CargoLog
 PWA zur Protokollierung von Anlieferungen. Das Frontend basiert auf Angular 21. Das Backend wird via REST-API im Mezzio Framework mit PHP betrieben. Als Datenbank kommt eine Phinx versionierte Postgres-DB zum Einsatz.
 
+# Die Architektur-Ebenen:
+
+1. **Request → Domain Model (Hydration)**<br>
+Der Hydrator verwandelt rohe Request-Daten in das Domain Model (Cargo mit Value Objects).
+2. **Domain Model → Datenbank (Persistence)**<br>
+Der Extractor verwandelt das Domain Model in ein Format, das die Datenbank versteht.
+3. **Datenbank → Domain Model (Reconstruction)**<br>
+Der Hydrator verwandelt die DB-Daten zurück in das Domain Model.
+<br>
+
+```
+Request (JSON)
+    ↓
+CorsMiddleware via Pipeline
+    ↓
+ValidationMiddleware ← validiert rohe Daten
+    ↓
+Handler ← Controller ← nutzt Hydrator
+    ↓
+Domain Model (Cargo mit Value Objects)
+    ↓ gibt an Repository
+Repository
+    ↓ nutzt Extractor
+Datenbank
+```
+
+### Konkrete Implementierung:
+
+1. **CargoHydrator:** Request → Domain
+2. **CargoExtractor:** Domain → Datenbank
+3. **CargoRepository:** Nutzt Extractor & Hydrator
+4. **CargoController:** Orchestriert alles
+
 # Projektanforderungen:
 
 - WSL
@@ -57,36 +90,3 @@ Derzeit werden nur Anfragen des Angular Dev Servers `http://localhost:4200` entg
 
 ## PostgreSQL PHP Erweiterung installieren:
 `sudo apt install php-pgsql`
-
-# Die Architektur-Ebenen:
-
-1. **Request → Domain Model (Hydration)**<br>
-Der Hydrator verwandelt rohe Request-Daten in das Domain Model (Cargo mit Value Objects).
-2. **Domain Model → Datenbank (Persistence)**<br>
-Der Extractor verwandelt das Domain Model in ein Format, das die Datenbank versteht.
-3. **Datenbank → Domain Model (Reconstruction)**<br>
-Der Hydrator verwandelt die DB-Daten zurück in das Domain Model.
-<br>
-
-```
-Request (JSON)
-    ↓
-CorsMiddleware via Pipeline
-    ↓
-ValidationMiddleware ← validiert rohe Daten
-    ↓
-Handler ← Controller ← nutzt Hydrator
-    ↓
-Domain Model (Cargo mit Value Objects)
-    ↓ gibt an Repository
-Repository
-    ↓ nutzt Extractor
-Datenbank
-```
-
-### Konkrete Implementierung:
-
-1. **CargoHydrator:** Request → Domain
-2. **CargoExtractor:** Domain → Datenbank
-3. **CargoRepository:** Nutzt Extractor & Hydrator
-4. **CargoController:** Orchestriert alles
