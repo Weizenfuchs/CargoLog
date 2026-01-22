@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Cargo\Middleware;
+namespace App\Cargo\Model\Repository;
 
 use App\Cargo\Model\Repository\CargoRepository;
 use App\Cargo\Service\Extractor\CargoExtractor;

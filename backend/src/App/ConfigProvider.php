@@ -7,13 +7,14 @@ namespace App;
 use App\Cargo\Controller\CargoController;
 use App\Cargo\Handler\CargoCreateHandler;
 use App\Cargo\Handler\CargoCreateHandlerFactory;
-use App\Cargo\Middleware\CargoControllerFactory;
+use App\Cargo\Controller\CargoControllerFactory;
 use App\Cargo\Middleware\CargoExtractorFactory;
 use App\Cargo\Middleware\CargoHydratorFactory;
-use App\Cargo\Middleware\CargoRepositoryFactory;
+use App\Cargo\Model\Repository\CargoRepositoryFactory;
 use App\Cargo\Model\Repository\CargoRepository;
 use App\Cargo\Service\Extractor\CargoExtractor;
 use App\Cargo\Service\Hydrator\CargoHydrator;
+use PDO;
 
 /**
  * The configuration provider for the App module
@@ -50,6 +51,16 @@ class ConfigProvider
                 CargoHydrator::class => CargoHydratorFactory::class,
                 CargoExtractor::class => CargoExtractorFactory::class,
                 CargoRepository::class => CargoRepositoryFactory::class,
+                // PDO-Factory hinzufügen
+                PDO::class => function (\Psr\Container\ContainerInterface $container) {
+                $dbConfig = $container->get('config')['db']; // Annahme: DB-Konfiguration existiert
+                return new PDO(
+                    $dbConfig['dsn'],
+                    $dbConfig['username'],
+                    $dbConfig['password'],
+                    $dbConfig['options'] ?? []
+                );
+            },
             ],
         ];
     }
