@@ -14,6 +14,8 @@ class CargoValidationMiddleware implements MiddlewareInterface
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $data = json_decode($request->getBody()->getContents(), true);
+
+        error_log('CargoValidationMiddleware: Eingehende Daten: ' . print_r($data, true));
         
         // FUCHS:TODO Implement validation logic here
         // For now, we just pass the request to the handler

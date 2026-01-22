@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Cargo\Controller\CargoController;
 use App\Cargo\Handler\CargoCreateHandler;
 use App\Cargo\Middleware\CargoControllerFactory;
+use App\Cargo\Middleware\CargoHydratorFactory;
 use App\Cargo\Middleware\CargoRepositoryFactory;
 use App\Cargo\Model\Repository\CargoRepository;
 use App\Cargo\Service\Hydrator\CargoHydrator;
