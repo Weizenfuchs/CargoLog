@@ -43,8 +43,15 @@ class CargoRepository
 
     public function findAll(): array
     {
-        // FUCHS:TODO: Implement
-        return [];
+        $sql = 'SELECT cargo_id, amount, description, weight, order_date, transport_type FROM cargo';
+
+        $stmt = $this->pdo->prepare($sql);
+
+        $stmt->execute();
+
+        $cargoList = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $cargoList;
     }
 
     public function update(Cargo $cargo): bool

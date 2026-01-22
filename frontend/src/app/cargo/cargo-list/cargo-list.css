@@ -1,0 +1,33 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+th {
+  background-color: #f4f4f4;
+}
+
+.loading, .error, .no-data {
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+.loading {
+  color: #888;
+}
+
+.error {
+  color: red;
+}
+
+.no-data {
+  color: green;
+  font-weight: bold;
+}

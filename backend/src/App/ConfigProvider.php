@@ -8,6 +8,8 @@ use App\Cargo\Controller\CargoController;
 use App\Cargo\Handler\CargoCreateHandler;
 use App\Cargo\Handler\CargoCreateHandlerFactory;
 use App\Cargo\Controller\CargoControllerFactory;
+use App\Cargo\Handler\CargoListHandler;
+use App\Cargo\Handler\CargoListHandlerFactory;
 use App\Cargo\Service\Extractor\CargoExtractorFactory;
 use App\Cargo\Service\Hydrator\CargoHydratorFactory;
 use App\Cargo\Model\Repository\CargoRepositoryFactory;
@@ -76,13 +78,14 @@ class ConfigProvider
             ],
             'factories'  => [
                 CargoCreateHandler::class => CargoCreateHandlerFactory::class,
+                CargoListHandler::class => CargoListHandlerFactory::class,
                 CargoController::class => CargoControllerFactory::class,
                 CargoHydrator::class => CargoHydratorFactory::class,
                 CargoExtractor::class => CargoExtractorFactory::class,
                 CargoRepository::class => CargoRepositoryFactory::class,
-                // PDO-Factory hinzufügen
+                // Lambda Function for DI-Injection of PDO-Factory into Service Manager
                 PDO::class => function (\Psr\Container\ContainerInterface $container) {
-                $dbConfig = $container->get('config')['db']; // Annahme: DB-Konfiguration existiert
+                $dbConfig = $container->get('config')['db'];
                 return new PDO(
                     $dbConfig['dsn'],
                     $dbConfig['username'],
