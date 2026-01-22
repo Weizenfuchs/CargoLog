@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Cargo\Middleware;
+namespace App\Cargo\Service\Hydrator;
 
 use App\Cargo\Service\Hydrator\AmountHydrator;
 use App\Cargo\Service\Hydrator\CargoHydrator;

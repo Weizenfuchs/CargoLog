@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Cargo\Middleware;
+namespace App\Cargo\Service\Extractor;
 
 use App\Cargo\Service\Extractor\CargoExtractor;
 use App\Cargo\Service\Extractor\AmountExtractor;

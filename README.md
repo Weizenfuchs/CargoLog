@@ -114,3 +114,10 @@ Verbindungsinformationen müssen in die hier erstellte phinx.php eingetragen wer
 
 **Ausführen der Phinx Migrationen:**
 `php vendor/bin/phinx migrate`
+
+### Prüfen der Daten in der Tabelle "cargo" in der Datenbank "cargolog":
+```sql
+/* sudo mysql -u root -p */
+USE cargolog;
+SELECT * FROM cargo;
+```
