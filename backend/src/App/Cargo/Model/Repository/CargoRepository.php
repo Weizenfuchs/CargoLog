@@ -21,20 +21,18 @@ class CargoRepository
     {
         $cargoData = $this->cargoExtractor->extract($cargo);
 
-        error_log(time() . ' ~> Creating cargo with data: ' . print_r($cargoData, true));
-
         $sql = 'INSERT INTO cargo (amount, description, weight, order_date, transport_type) 
                 VALUES (:amount, :description, :weight, :order_date, :transport_type)';
 
         $stmt = $this->pdo->prepare($sql);
 
-        $stmt->bindParam(':amount', $cargoData['amount']);
-        $stmt->bindParam(':description', $cargoData['description']);
-        $stmt->bindParam(':weight', $cargoData['weight']);
-        $stmt->bindParam(':order_date', $cargoData['order_date']);
-        $stmt->bindParam(':transport_type', $cargoData['transport_type']);
-
-        return $stmt->execute($cargoData);
+        return $stmt->execute([
+            ':amount' => $cargoData['amount'],
+            ':description' => $cargoData['description'],
+            ':weight' => $cargoData['weight'],
+            ':order_date' => $cargoData['order-date'],
+            ':transport_type' => $cargoData['transport-type']
+        ]);
     }
 
     public function findById(int $id): ?Cargo
