@@ -77,16 +77,40 @@ Derzeit werden nur Anfragen des Angular Dev Servers `http://localhost:4200` entg
 ### Backend starten:
 `php -S localhost:8080 -t public/`
 
-# Datenbank - Postgres Setup:
+# Datenbank - MariaDB Setup:
 
 **Installation:**<br>
-`sudo apt-get install postgresql postgresql-client`<br>
+`sudo apt-get install mariadb-server`<br>
 **Start:**<br>
-`sudo service postgresql start`<br>
+`sudo service mariadb start`<br>
 **Status:**<br>
-`sudo service postgresql status`<br>
+`sudo service mariadb status`<br>
+**Automatisch beim Start von WSL Starten:**(ungetestet)<br>
+`sudo systemctl enable mariadb`<br>
 **Login:**<br>
-`sudo -u postgres psql`
+`sudo mysql -u root -p`
 
-## PostgreSQL PHP Erweiterung installieren:
-`sudo apt install php-pgsql`
+### Erstellen der Datenbank "cargolog":
+```sql
+/* sudo mysql -u root -p */
+CREATE DATABASE cargolog;
+USE mysql;
+CREATE USER 'admin'@'localhost' IDENTIFIED BY 'start123';
+GRANT ALL PRIVILEGES ON cargolog.* TO 'admin'@'localhost';
+FLUSH PRIVILEGES;
+SELECT user, host FROM user;
+```
+
+### Erstellen der cargo Tabelle:
+
+## Phinx (`cd ~/projects/CargoLog/backend`):
+
+**Erstellen der Phinx Konfigurationsdatei:**
+`php vendor/bin/phinx init`<br>
+Verbindungsinformationen müssen in die hier erstellte phinx.php eingetragen werden.
+
+**Erstellen einer Tabellenmigrationsdatei:**
+`php vendor/bin/phinx create CreateCargo`
+
+**Ausführen der Phinx Migrationen:**
+`php vendor/bin/phinx migrate`

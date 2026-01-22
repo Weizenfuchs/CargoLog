@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 use App\Cargo\Handler\CargoCreateHandler;
-use App\Cargo\Middleware\CargoValidationMiddleware;
 use Mezzio\Application;
 use Mezzio\MiddlewareFactory;
 use Psr\Container\ContainerInterface;
