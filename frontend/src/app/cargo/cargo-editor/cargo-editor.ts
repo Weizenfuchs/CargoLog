@@ -12,12 +12,17 @@ import { CargoService } from '../services/cargo';
 })
 export class CargoEditor {
 
+  successMessage: string = "";
+
   constructor(private cargoService: CargoService) {}
 
   onSubmit(formData: any) {
     this.cargoService.submitCargoData(formData).subscribe({
       next: (response) => {
         console.log('Erfolg:', response);
+        if (response.success) {
+          this.successMessage = response.message;
+        }
       },
       error: (error) => {
         console.error('Fehler:', error);
@@ -34,5 +39,9 @@ export class CargoEditor {
     if (event.key === '-' || event.key === '+') {
       event.preventDefault();
     }
+  }
+
+  onFormChange() {
+    this.successMessage = "";
   }
 }

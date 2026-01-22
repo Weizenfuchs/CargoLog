@@ -72,3 +72,12 @@ select:has(option:checked[value=""]):not(:focus):not(:focus-within) {
   color: #dc2626; /* Rot für Fehler */
   font-size: 0.85rem;
 }
+
+.success-message {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  border: 1px solid #c3e6cb;
+}
