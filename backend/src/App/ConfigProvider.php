@@ -4,6 +4,17 @@ declare(strict_types=1);
 
 namespace App;
 
+use App\Cargo\Controller\CargoController;
+use App\Cargo\Handler\CargoCreateHandler;
+use App\Cargo\Handler\CargoCreateHandlerFactory;
+use App\Cargo\Middleware\CargoControllerFactory;
+use App\Cargo\Middleware\CargoExtractorFactory;
+use App\Cargo\Middleware\CargoHydratorFactory;
+use App\Cargo\Middleware\CargoRepositoryFactory;
+use App\Cargo\Model\Repository\CargoRepository;
+use App\Cargo\Service\Extractor\CargoExtractor;
+use App\Cargo\Service\Hydrator\CargoHydrator;
+
 /**
  * The configuration provider for the App module
  *
@@ -32,10 +43,13 @@ class ConfigProvider
     {
         return [
             'invokables' => [
-                Handler\PingHandler::class => Handler\PingHandler::class,
             ],
             'factories'  => [
-                Handler\HomePageHandler::class => Handler\HomePageHandlerFactory::class,
+                CargoCreateHandler::class => CargoCreateHandlerFactory::class,
+                CargoController::class => CargoControllerFactory::class,
+                CargoHydrator::class => CargoHydratorFactory::class,
+                CargoExtractor::class => CargoExtractorFactory::class,
+                CargoRepository::class => CargoRepositoryFactory::class,
             ],
         ];
     }

@@ -14,6 +14,7 @@ class CargoRepositoryFactory
 {
     public function __invoke(ContainerInterface $container): CargoRepository
     {
+                error_log("CargoCreateRepository: Factory invoked");
         
         return new CargoRepository(
             $container->get(PDO::class),

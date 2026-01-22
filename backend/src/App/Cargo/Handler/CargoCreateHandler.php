@@ -19,7 +19,6 @@ class CargoCreateHandler implements RequestHandlerInterface
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         $data = json_decode($request->getBody()->getContents(), true);
-
         // FUCHS:TODO: Testen
         // $success = $this->cargoController->create($data);
         $success = true;

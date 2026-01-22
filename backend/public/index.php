@@ -2,15 +2,19 @@
 
 declare(strict_types=1);
 
+// CORS Header setzen
+header('Access-Control-Allow-Origin: *'); // Erlaubt allen Ursprüngen Zugriff, ändere das bei Bedarf auf spezifische URLs
+header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type, Authorization');
+
+// Falls der Entwicklungsmodus nicht aktiv ist, setze ihn auf development
 if (getenv('APPLICATION_ENV') !== 'development') {
-    // Falls der Entwicklungsmodus nicht aktiv ist, solltest du hier den Modus setzen
     putenv('APPLICATION_ENV=development');
 }
 
-// Fehleranzeige aktivieren
+// Error Reporting für Development
+ini_set('display_errors', 1);
 error_reporting(E_ALL);
-ini_set('display_errors', '1');
-ini_set('display_startup_errors', '1');
 
 // Delegate static file requests back to the PHP built-in webserver
 if (PHP_SAPI === 'cli-server' && $_SERVER['SCRIPT_FILENAME'] !== __FILE__) {

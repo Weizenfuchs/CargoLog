@@ -2,22 +2,14 @@
 
 declare(strict_types=1);
 
-// phpcs:disable PSR12.Files.FileHeader.IncorrectOrder
-
-/**
- * Development-only configuration.
- *
- * Put settings you want enabled when under development mode in this file, and
- * check it into your repository.
- *
- * Developers on your team will then automatically enable them by calling on
- * `composer development-enable`.
- */
-
 use Mezzio\Container;
 use Mezzio\Middleware\ErrorResponseGenerator;
+use Laminas\ConfigAggregator\ConfigAggregator;
 
 return [
+    'debug' => true,
+    ConfigAggregator::ENABLE_CACHE => false,
+    
     'dependencies' => [
         'factories' => [
             ErrorResponseGenerator::class => Container\WhoopsErrorResponseGeneratorFactory::class,
@@ -25,11 +17,11 @@ return [
             'Mezzio\WhoopsPageHandler'    => Container\WhoopsPageHandlerFactory::class,
         ],
     ],
-    'whoops'       => [
+    'whoops' => [
         'json_exceptions' => [
             'display'    => true,
             'show_trace' => true,
-            'ajax_only'  => true,
+            'ajax_only'  => false,
         ],
     ],
 ];

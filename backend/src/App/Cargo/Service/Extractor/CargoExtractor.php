@@ -9,7 +9,7 @@ use App\Cargo\Model\Cargo;
 class CargoExtractor
 {
     public function __construct(
-        public readonly CargoExtractor $cargoExtractor,
+        public readonly CargoIdExtractor $cargoIdExtractor,
         public readonly AmountExtractor $amountExtractor,
         public readonly DescriptionExtractor $descriptionExtractor,
         public readonly WeightExtractor $weightExtractor,

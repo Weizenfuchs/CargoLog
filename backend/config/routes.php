@@ -17,7 +17,6 @@ return static function (Application $app, MiddlewareFactory $factory, ContainerI
     $app->post(
         '/api/cargo',
         [
-            CargoValidationMiddleware::class,
             CargoCreateHandler::class,
         ], 
         'cargo.create'
