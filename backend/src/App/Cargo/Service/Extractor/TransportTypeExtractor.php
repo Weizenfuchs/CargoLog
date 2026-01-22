@@ -8,11 +8,8 @@ use App\Cargo\Model\ValueObjects\TransportType;
 
 class TransportTypeExtractor
 {
-    public function extract(TransportType $transportType): array
+    public function extract(TransportType $transportType): string
     {
-        return [
-            'uuid' => $transportType->uuid->toString(),
-            'transportType' => $transportType->transportType,
-        ];
+        return $transportType->transportType;
     }
 }

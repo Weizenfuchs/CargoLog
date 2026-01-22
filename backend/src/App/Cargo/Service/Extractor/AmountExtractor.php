@@ -8,11 +8,8 @@ use App\Cargo\Model\ValueObjects\Amount;
 
 class AmountExtractor
 {
-    public function extract(Amount $amount): array
+    public function extract(Amount $amount): int
     {
-        return [
-            'uuid' => $amount->uuid->toString(),
-            'amount' => $amount->amount,
-        ];
+        return $amount->amount;
     }
 }

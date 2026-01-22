@@ -8,11 +8,8 @@ use App\Cargo\Model\ValueObjects\Description;
 
 class DescriptionExtractor
 {
-    public function extract(Description $description): array
+    public function extract(Description $description): string
     {
-        return [
-            'uuid' => $description->uuid->toString(),
-            'description' => $description->description,
-        ];
+        return $description->description;
     }
 }

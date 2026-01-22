@@ -8,11 +8,8 @@ use App\Cargo\Model\ValueObjects\Weight;
 
 class WeightExtractor
 {
-    public function extract(Weight $weight): array
+    public function extract(Weight $weight): float
     {
-        return [
-            'uuid' => $weight->uuid->toString(),
-            'weight' => $weight->weight,
-        ];
+        return $weight->weight;
     }
 }

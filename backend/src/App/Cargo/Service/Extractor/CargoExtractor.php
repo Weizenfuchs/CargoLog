@@ -20,12 +20,11 @@ class CargoExtractor
     public function extract(Cargo $cargo): array
     {
         return [
-            'uuid' => $cargo->uuid->toString(),
             'amount' => $this->amountExtractor->extract($cargo->amount),
             'description' => $this->descriptionExtractor->extract($cargo->description),
             'weight' => $this->weightExtractor->extract($cargo->weight),
-            'orderDate' => $this->orderDateExtractor->extract($cargo->orderDate),
-            'transportType' => $this->transportTypeExtractor->extract($cargo->transportType),
+            'order-date' => $this->orderDateExtractor->extract($cargo->orderDate),
+            'transport-type' => $this->transportTypeExtractor->extract($cargo->transportType),
         ];
     }
 }

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Cargo\Service\Hydrator;
 
 use App\Cargo\Model\Cargo;
+use DateTime;
 use Ramsey\Uuid\Uuid;
 
 class CargoHydrator
@@ -19,14 +20,14 @@ class CargoHydrator
 
     public function hydrateNewCargoFromRequest(array $data): Cargo
     {
+        error_log('Hydrating new Cargo from request data: ' . print_r($data, true));
         return new Cargo(
-            uuid: Uuid::uuid4(),
             cargoId: null,
             amount: $this->amountHydrator->hydrate($data['amount']),
             description: $this->descriptionHydrator->hydrate($data['description']),
             weight: $this->weightHydrator->hydrate($data['weight']),
-            orderDate: $this->orderDateHydrator->hydrate($data['orderDate']),
-            transportType: $this->transportTypeHydrator->hydrate($data['transportType'])
+            orderDate: $this->orderDateHydrator->hydrate(DateTime::createFromFormat('Y-m-d', $data['order-date'])),
+            transportType: $this->transportTypeHydrator->hydrate($data['transport-type'])
         );
     }
 

@@ -8,11 +8,8 @@ use App\Cargo\Model\ValueObjects\CargoId;
 
 class CargoIdExtractor
 {
-    public function extract(CargoId $cargoId): array
+    public function extract(CargoId $cargoId): int
     {
-        return [
-            'uuid' => $cargoId->uuid->toString(),
-            'cargoId' => $cargoId->cargoId,
-        ];
+        return $cargoId->cargoId;
     }
 }
