@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { CargoService } from '../services/cargo';  // Dein Service, der die Daten abruft
+import { CargoService } from '../services/cargo';
 
 @Component({
   selector: 'app-cargo-list',
@@ -11,7 +11,7 @@ import { CargoService } from '../services/cargo';  // Dein Service, der die Date
 })
 export class CargoList implements OnInit {
   cargoList: any[] = [];
-  isLoading = false;
+  isLoading = true;
   errorMessage: string | null = null;
 
   constructor(private cargoService: CargoService) {}

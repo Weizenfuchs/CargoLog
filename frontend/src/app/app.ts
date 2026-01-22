@@ -1,11 +1,13 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { Dashboard } from './dashboard/dashboard';
+import { CargoEditor } from './cargo/cargo-editor/cargo-editor';
 
 @Component({
   standalone: true,
   selector: 'app-root',
   imports: [
-    Dashboard
+    Dashboard,
+    CargoEditor,
   ],
   template: `
     <div class="app-container">
@@ -23,5 +25,5 @@ import { Dashboard } from './dashboard/dashboard';
   styleUrls: ['./app.css'],
 })
 export class App {
-  protected readonly title = signal('cargolog');
+  title = 'cargolog';
 }
