@@ -123,3 +123,10 @@ Verbindungsinformationen müssen in die hier erstellte phinx.php eingetragen wer
 USE cargolog;
 SELECT * FROM cargo;
 ```
+
+# Sonstiges:
+
+#### Error Logging Example:
+```php
+error_log('Informative Text: ' . print_r($data, true));
+```

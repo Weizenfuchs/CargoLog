@@ -13,8 +13,6 @@ class CargoControllerFactory
 {
     public function __invoke(ContainerInterface $container): CargoController
     {
-        error_log("CargoController: Factory invoked");
-
         return new CargoController(
             $container->get(CargoRepository::class),
             $container->get(CargoHydrator::class)

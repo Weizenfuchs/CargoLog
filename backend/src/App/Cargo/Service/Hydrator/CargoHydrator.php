@@ -20,7 +20,6 @@ class CargoHydrator
 
     public function hydrateNewCargoFromRequest(array $data): Cargo
     {
-        error_log('Hydrating new Cargo from request data: ' . print_r($data, true));
         return new Cargo(
             cargoId: null,
             amount: $this->amountHydrator->hydrate($data['amount']),
