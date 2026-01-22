@@ -47,8 +47,8 @@ Datenbank
 ### WSL Installation:
 `wsl --install`
 
----
-# Frontend - Angular Setup (`cd ~/projects/CargoLog/frontend`):
+# Frontend - Angular Setup
+`cd ~/projects/CargoLog/frontend`
 
 ### Abhängigkeiten installieren:
 `npm install`
@@ -59,7 +59,8 @@ Datenbank
 ### Im Browser aufrufen:
 `http://localhost:4200`
 
-# Backend - Mezzio Setup (`cd ~/projects/CargoLog/backend`):
+# Backend - Mezzio Setup 
+`cd ~/projects/CargoLog/backend`
 
 ### Composer installieren:
 `sudo apt-get install composer`
@@ -91,6 +92,7 @@ Derzeit werden nur Anfragen des Angular Dev Servers `http://localhost:4200` entg
 `sudo mysql -u root -p`
 
 ### Erstellen der Datenbank "cargolog":
+Um die Datenbank benutzen zu können, muss ein eigener Benutzer angelegt werden.
 ```sql
 /* sudo mysql -u root -p */
 CREATE DATABASE cargolog;
