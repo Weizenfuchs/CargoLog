@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
 import { Dashboard } from './dashboard/dashboard';
-import { CargoEditor } from './cargo/cargo-editor/cargo-editor';
 
 @Component({
   standalone: true,
   selector: 'app-root',
   imports: [
     Dashboard,
-    CargoEditor,
   ],
   template: `
     <div class="app-container">
