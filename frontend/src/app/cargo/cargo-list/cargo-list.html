@@ -2,28 +2,28 @@
 
 <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
 
-<table *ngIf="!isLoading && cargoList.length > 0">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Menge</th>
-      <th>Beschreibung</th>
-      <th>Gewicht</th>
-      <th>Auftragseingang</th>
-      <th>Transportart</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let cargo of cargoList">
-      <td>{{ cargo.cargo_id }}</td>
-      <td>{{ cargo.amount }}</td>
-      <td>{{ cargo.description }}</td>
-      <td>{{ cargo.weight }} kg</td>
-      <td>{{ cargo.order_date | date: 'dd.MM.yyyy' }}</td>
-      <td>{{ cargo.transport_type }}</td>
-    </tr>
-  </tbody>
-</table>
+<div *ngIf="!isLoading && cargoList.length > 0" class="cargo-grid">
+  <div *ngFor="let cargo of cargoList" class="cargo-tile">
+    <div class="cargo-info">
+      <strong>ID:</strong> {{ cargo.cargo_id }}
+    </div>
+    <div class="cargo-info">
+      <strong>Menge:</strong> {{ cargo.amount }}
+    </div>
+    <div class="cargo-info">
+      <strong>Beschreibung:</strong> {{ cargo.description }}
+    </div>
+    <div class="cargo-info">
+      <strong>Gewicht:</strong> {{ cargo.weight }} kg
+    </div>
+    <div class="cargo-info">
+      <strong>Auftragseingang:</strong> {{ cargo.order_date | date: 'dd.MM.yyyy' }}
+    </div>
+    <div class="cargo-info">
+      <strong>Transportart:</strong> {{ cargo.transport_type }}
+    </div>
+  </div>
+</div>
 
 <div *ngIf="cargoList.length === 0 && !isLoading" class="no-data">
   Keine Fracht-Daten vorhanden.
